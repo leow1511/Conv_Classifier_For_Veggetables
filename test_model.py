@@ -1,3 +1,4 @@
+import os
 import torch
 import seaborn as sns
 from torch.utils.data import DataLoader
@@ -7,7 +8,8 @@ from class_definition import VeggiesDataset, ConvNet
 
 trained_model = torch.load("./veggie_net.pt")
 # run parser only first time
-data_parser("saved", "test")
+if not os.path.exists(".\saved_test_values.pt"):
+    data_parser("saved", "test")
 
 test_images = torch.load(".\saved_test_values.pt")
 test_labels = torch.load(".\saved_test_labels.pt")
